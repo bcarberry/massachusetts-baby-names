@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+html,
+body,
+div {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+}
+
+.hero {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('./common.jpg');
+    position: fixed;
+    top: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center left;
+    display: table;
+    z-index: 0;
+    opacity: .7;
+}
+
+.main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.intro {
+    background-color: #FFF;
+    border-radius: 10px;
+    box-shadow: -1px 1px 19px 0px rgba(97, 95, 95, 0.31);
+    max-width: 500px;
+    margin: auto 0;
+    padding: 30px;
+    text-align: center;
+    z-index: 5;
+}
+
+.lead {
+    font-family: 'Amatic SC', cursive;
+    font-size: 40px;
+    margin: 0;
+}
+
+#familyName {
+    border-radius: 5px;
+    border: solid 1px rgb(192, 196, 195);
+    margin-top: 18px;
+    padding: 10px;
+}
+
+div#generate {
+    border-radius: 4px;
+    background-color: rgb(105, 135, 130);
+    color: #FFF;
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+#output {
+    border: 1px solid rgb(105, 135, 130);
+    border-radius: 10px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 56px;
+    margin-top: 18px;
+    padding: 10px;
+}
+
+#output p {
+    margin: 0;
+}
+
+footer {
+    background-color: #4e4e4e;
+    bottom: 0;
+    color: #fff;
+    font-size: 10px;
+    position: fixed;
+    width: 100%;
+    opacity: .75;
+}
+
+footer p {
+    margin: 10px;
+}
+
+footer a {
+    color: rgb(203, 227, 223);
+    text-decoration: none;
+}
