@@ -59,7 +59,8 @@
     const button = document.getElementById('generate');
     button.addEventListener('click', () => {
       let babyName = '';
-      const fodder = [...local, ...places];
+      // const fodder = [...local, ...places];
+      const fodder = [...mass];
       const firstName = fodder[Math.floor(Math.random() * fodder.length)];
       const middleName = fodder[Math.floor(Math.random() * fodder.length)];
       const familyName = document.getElementById('familyName').value;
@@ -71,5 +72,4 @@
     });
   </script>
 </body>
-
 </html>
