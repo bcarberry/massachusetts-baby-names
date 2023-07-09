@@ -9,7 +9,7 @@
   <link rel="icon" href="../../favicon.ico">
   <meta name="robots" content="noindex">
   <title>Massachusetts Baby Name Generator</title>
-  <link href="styles.css" rel="stylesheet">
+  <link href="styles.css?foo=123" rel="stylesheet">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
       <p>Are you a wicked townie? Are you expecting a little bundle of joy? Have no idea what to name them?</p>
       <p><b>You've come to the right place!</b></p>
       <div class="generator-form">
-        <div><b>Add a Last Name?</b></div>
+        <div class='last-name-label'><b>LAST NAME</b></div>
         <input id="familyName" type="text" value="" placeholder="eg Brady">
         <div>
           <div id="generate">
@@ -37,10 +37,10 @@
       </div>
 
       <div id="output">
-        <p>... Frugal Fannie ...</p>
+        <p>Dottie Coolata</p>
       </div>
     </div>
-    <footer>
+    <!-- <footer>
       <p class="attribution">"<a target="_blank" rel="noopener noreferrer"
           href="https://www.flickr.com/photos/87542849@N00/5151755483">Make Way for Ducklings Statue</a>" by <a
           target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/87542849@N00">kimberlykv</a> is
@@ -50,22 +50,44 @@
             style="height: 1em; margin-right: 0.125em; display: inline;"></img><img
             src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
             style="height: 1em; margin-right: 0.125em; display: inline;"></img></a>. </p>
-    </footer>
+    </footer> -->
   </div>
   <script src="local.js"></script>
   <script src="places.js"></script>
   <script src="mass.js"></script>
   <script>
     const button = document.getElementById('generate');
+    const prepopulateName = window.location.hash.split('=')[1];
+
+    if (prepopulateName && prepopulateName.length) {
+      document.getElementById('familyName').value = prepopulateName;
+      const initialOutput = document.getElementById('output');
+      initialOutput.innerHTML += ` ${prepopulateName}`;  
+    }
+
     button.addEventListener('click', () => {
       let babyName = '';
+      const localName = [...local];
+      const placeName = [...places];
       // const fodder = [...local, ...places];
-      const fodder = [...mass];
-      const firstName = fodder[Math.floor(Math.random() * fodder.length)];
-      const middleName = fodder[Math.floor(Math.random() * fodder.length)];
-      const familyName = document.getElementById('familyName').value;
+      // const fodder = [...mass];
+      let firstName = localName[Math.floor(Math.random() * localName.length)];
+      let middleName = placeName[Math.floor(Math.random() * placeName.length)];
+      let familyName = document.getElementById('familyName').value;
 
-      babyName = `${firstName} ${middleName} ${familyName ? familyName : ''}`;
+      if (firstName.split(' ').length > 1) {
+        // firstName = firstName.split(' ');
+        // firstName = firstName[Math.floor(Math.random() * firstName.length)];
+        babyName = `${firstName} ${familyName ? familyName : ''}`;
+      } else if (middleName.split(' ').length > 1) {
+        // middleName = middleName.split(' ');
+        // middleName = middleName[Math.floor(Math.random() * middleName.length)];
+        babyName = `${middleName} ${familyName ? familyName : ''}`;
+      } else {
+        babyName = `${firstName} ${middleName} ${familyName ? familyName : ''}`;
+      }
+
+      // babyName = `${firstName} ${middleName} ${familyName ? familyName : ''}`;
 
       const output = document.getElementById('output');
       output.innerHTML = babyName;

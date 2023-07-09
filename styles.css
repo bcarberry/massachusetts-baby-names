@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Caprasimo&display=swap');
 
 html,
 body,
@@ -21,6 +21,7 @@ div {
     display: table;
     z-index: 0;
     opacity: .7;
+    background-image: linear-gradient( 109.6deg, rgba(156,252,248,1) 11.2%, rgba(110,123,251,1) 91.1% );
 }
 
 .main-container {
@@ -30,7 +31,12 @@ div {
 }
 
 .intro {
-    background-color: #FFF;
+    /* background-color: #41B3A366; */
+    background-image: linear-gradient(to right, #d3cce3, #e9e4f0); 
+
+    /* background-image: linear-gradient(to right, #ffefba, #ffffff); */
+    /* background: radial-gradient(ellipse at top, #AFD275, transparent), */
+/* radial-gradient(ellipse at bottom, #c2cad0, transparent); */
     border-radius: 10px;
     box-shadow: -1px 1px 19px 0px rgba(97, 95, 95, 0.31);
     max-width: 500px;
@@ -41,9 +47,10 @@ div {
 }
 
 .lead {
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Caprasimo', sans-serif;
     font-size: 40px;
     margin: 0;
+    color: #63405f
 }
 
 #familyName {
@@ -53,9 +60,14 @@ div {
     padding: 10px;
 }
 
+.last-name-label {
+    display: inline-block;
+    
+}
+
 div#generate {
     border-radius: 4px;
-    background-color: rgb(105, 135, 130);
+    background-color: #63405f;
     color: #FFF;
     display: inline-block;
     margin-top: 18px;
@@ -64,13 +76,18 @@ div#generate {
     box-shadow: none;
 }
 
+input {
+    font-size: 20px;
+}
+
 #output {
     border: 1px solid rgb(105, 135, 130);
     border-radius: 10px;
-    font-family: 'Amatic SC', cursive;
-    font-size: 56px;
+    font-family: 'Caprasimo', sans-serif;
+    font-size: 50px;
     margin-top: 18px;
     padding: 10px;
+    color: #63405f;
 }
 
 #output p {
