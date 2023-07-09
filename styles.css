@@ -50,19 +50,33 @@ div {
     font-family: 'Caprasimo', sans-serif;
     font-size: 40px;
     margin: 0;
-    color: #63405f
+    color: #63405f;
+    line-height: 0.8;
+}
+
+.generator-form {
+    width: 245px;
+    margin: 0 auto;
 }
 
 #familyName {
     border-radius: 5px;
     border: solid 1px rgb(192, 196, 195);
-    margin-top: 18px;
+    /* margin-top: 18px; */
     padding: 10px;
 }
 
-.last-name-label {
-    display: inline-block;
-    
+.last-name-input {
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-left: 5px;
+    color: #63405f;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 div#generate {
@@ -88,6 +102,7 @@ input {
     margin-top: 18px;
     padding: 10px;
     color: #63405f;
+    line-height: 0.8;
 }
 
 #output p {
