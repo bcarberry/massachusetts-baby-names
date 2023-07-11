@@ -45,7 +45,9 @@
   </div>
   <script src="local.js"></script>
   <script src="places.js"></script>
-  <script src="mass.js?foo"></script>
+  <script src="mass.js"></script>
+  <script src="first.js?"></script>
+  <script src="middle.js"></script>
   <script>
     const button = document.getElementById('generate');
     const prepopulateName = window.location.hash.split('=')[1];
@@ -61,22 +63,25 @@
     button.addEventListener('click', () => {
       const localName = [...local];
       const placeName = [...places];
+      const firstNames = [...first];
+      const middleNames = [...middle];
       const fodder = [...mass];
       let babyName = '';
       let familyName = document.getElementById('familyName').value;
 
       // let [ firstName, middleName ] = getNames(localName, placeName);
-      let [ firstName, middleName ] = getNames2(fodder);
+      let [ firstName, middleName ] = getNames(firstNames, middleNames);
+      // let [ firstName, middleName ] = getNames2(fodder);
 
-      console.log(previousNames)
       if (previousNames.length > 25) previousNames = [];
 
       const pickFirstName = Math.random() >= 0.5;
 
       // If we've seen this name recently, pick new ones
       if ((previousNames.indexOf(firstName) !== -1) || (previousNames.indexOf(middleName) !== -1)) {
-        const newNames = getNames2(fodder);
+        // const newNames = getNames2(fodder);
         // const newNames = getNames(localName, placeName);
+        const newNames = getNames(firstNames, middleNames);
         firstName = newNames[0];
         middleName = newNames[1]
       }
@@ -113,9 +118,9 @@
     });
 
 
-    function getNames(localName, placeName) {
-      let firstName = localName[Math.floor(Math.random() * localName.length)];
-      let middleName = placeName[Math.floor(Math.random() * placeName.length)];
+    function getNames(array1, array2) {
+      let firstName = array1[Math.floor(Math.random() * array1.length)];
+      let middleName = array2[Math.floor(Math.random() * array2.length)];
 
       return [firstName, middleName];
     }
