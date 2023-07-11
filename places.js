@@ -56,7 +56,7 @@ const places = [
     "Gillette",
     "Castle Island",
     "Charles River",
-    "Neponset River",
+    "Neponset",
     "Mashpee",
     "Sharon",
     "Walden",
@@ -124,5 +124,8 @@ const places = [
     "Cape Cod",
     "Nantucket",
     "Martha's Vineyard",
-    "Logan"
+    "Logan",
+    "Paxton",
+    "T.",
+    "'99'"
 ]

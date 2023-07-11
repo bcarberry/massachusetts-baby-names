@@ -45,44 +45,89 @@
   </div>
   <script src="local.js"></script>
   <script src="places.js"></script>
-  <script src="mass.js"></script>
+  <script src="mass.js?foo"></script>
   <script>
     const button = document.getElementById('generate');
     const prepopulateName = window.location.hash.split('=')[1];
+    let previousNames = [];
 
     if (prepopulateName && prepopulateName.length) {
       document.getElementById('familyName').value = prepopulateName;
+
       const initialOutput = document.getElementById('output');
       initialOutput.innerHTML += ` ${prepopulateName}`;  
     }
 
     button.addEventListener('click', () => {
-      let babyName = '';
       const localName = [...local];
       const placeName = [...places];
-      // const fodder = [...local, ...places];
-      // const fodder = [...mass];
-      let firstName = localName[Math.floor(Math.random() * localName.length)];
-      let middleName = placeName[Math.floor(Math.random() * placeName.length)];
+      const fodder = [...mass];
+      let babyName = '';
       let familyName = document.getElementById('familyName').value;
 
-      if (firstName.split(' ').length > 1) {
-        // firstName = firstName.split(' ');
-        // firstName = firstName[Math.floor(Math.random() * firstName.length)];
+      // let [ firstName, middleName ] = getNames(localName, placeName);
+      let [ firstName, middleName ] = getNames2(fodder);
+
+      console.log(previousNames)
+      if (previousNames.length > 25) previousNames = [];
+
+      const pickFirstName = Math.random() >= 0.5;
+
+      // If we've seen this name recently, pick new ones
+      if ((previousNames.indexOf(firstName) !== -1) || (previousNames.indexOf(middleName) !== -1)) {
+        const newNames = getNames2(fodder);
+        // const newNames = getNames(localName, placeName);
+        firstName = newNames[0];
+        middleName = newNames[1]
+      }
+      
+      const firstNameMultiWord = firstName.split(' ').length > 1;
+      const middleNameMultiWord = middleName.split(' ').length > 1;
+
+      if (firstNameMultiWord && middleNameMultiWord && pickFirstName) {
         babyName = `${firstName} ${familyName ? familyName : ''}`;
-      } else if (middleName.split(' ').length > 1) {
-        // middleName = middleName.split(' ');
-        // middleName = middleName[Math.floor(Math.random() * middleName.length)];
+
+        previousNames.push(firstName);
+        console.log(previousNames)
+      } else if (firstNameMultiWord && middleNameMultiWord && !pickFirstName) {
         babyName = `${middleName} ${familyName ? familyName : ''}`;
+
+        previousNames.push(middleName);
+      } else if (firstNameMultiWord && !middleNameMultiWord) {
+        babyName = `${firstName} ${familyName ? familyName : ''}`;
+
+        previousNames.push(firstName);
+      } else if (!firstNameMultiWord && middleNameMultiWord) {
+        babyName = `${middleName} ${familyName ? familyName : ''}`;
+
+        previousNames.push(middleName);
       } else {
         babyName = `${firstName} ${middleName} ${familyName ? familyName : ''}`;
+
+        previousNames.push(firstName);
+        previousNames.push(middleName);
       }
-
-      // babyName = `${firstName} ${middleName} ${familyName ? familyName : ''}`;
-
+      
       const output = document.getElementById('output');
       output.innerHTML = babyName;
     });
+
+
+    function getNames(localName, placeName) {
+      let firstName = localName[Math.floor(Math.random() * localName.length)];
+      let middleName = placeName[Math.floor(Math.random() * placeName.length)];
+
+      return [firstName, middleName];
+    }
+
+    function getNames2(array) {
+      let firstName = array[Math.floor(Math.random() * array.length)];
+      let middleName = array[Math.floor(Math.random() * array.length)];
+
+      if (firstName === middleName) middleName = array[Math.floor(Math.random() * array.length)];
+
+      return [firstName, middleName];
+    }
   </script>
 </body>
 </html>
